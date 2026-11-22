@@ -13,7 +13,7 @@ else()
     set(STARTUP_FILE startup_stm32f103xe.s)
 endif()
 add_executable(${PROJECT_NAME}
-    Core/Src/main.c Core/Src/soft_i2c.c Drivers/LCD/lcd.c Core/Src/stm32f1xx_it.c Core/Src/system_stm32f1xx.c Core/Src/sysmem.c Core/Src/syscalls.c
+    Core/Src/main.c Core/Inc/dht11.c Core/Src/soft_i2c.c Drivers/LCD/lcd.c Core/Src/stm32f1xx_it.c Core/Src/system_stm32f1xx.c Core/Src/sysmem.c Core/Src/syscalls.c
     ${STARTUP_FILE}
     ${HAL_DIR}/Src/stm32f1xx_hal.c
     ${HAL_DIR}/Src/stm32f1xx_hal_cortex.c

@@ -743,6 +743,17 @@ void lcd_printf(uint16_t x, uint16_t y, const char *format, ...) {
     lcd_show_string(x, y, (lcddev.width - x - 10), lcddev.height - y, 16, buffer, g_point_color);
 }
 
+void lcd_printf_err(uint16_t x, uint16_t y, const char *format, ...) {
+    char buffer[64] = {0};
+    va_list args;
+
+    va_start(args, format);
+    vsnprintf(buffer, sizeof(buffer), format, args);
+    va_end(args);
+    lcd_show_string(x, y, (lcddev.width - x - 10), lcddev.height - y, 16, buffer, RED);
+}
+
+
 
 
 

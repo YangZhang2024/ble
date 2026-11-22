@@ -12,7 +12,6 @@
             "includePath": [
                 "${workspaceFolder}/Core/Inc",
                 "${workspaceFolder}/Drivers/LCD",
-                "${workspaceFolder}/Drivers/SYSTEM/delay",
                 "${workspaceFolder}/Drivers/STM32F1xx_HAL_Driver/Inc",
                 "${workspaceFolder}/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy",
                 "${workspaceFolder}/Drivers/CMSIS/Include",
