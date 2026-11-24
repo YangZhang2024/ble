@@ -14,6 +14,7 @@ else()
 endif()
 add_executable(${PROJECT_NAME}
     Core/Src/main.c Core/Inc/dht11.c Core/Src/soft_i2c.c Drivers/LCD/lcd.c Core/Src/stm32f1xx_it.c Core/Src/system_stm32f1xx.c Core/Src/sysmem.c Core/Src/syscalls.c
+    Core/Src/usart.c
     ${STARTUP_FILE}
     ${HAL_DIR}/Src/stm32f1xx_hal.c
     ${HAL_DIR}/Src/stm32f1xx_hal_cortex.c
@@ -24,6 +25,8 @@ add_executable(${PROJECT_NAME}
     ${HAL_DIR}/Src/stm32f1xx_hal_flash.c
     ${HAL_DIR}/Src/stm32f1xx_hal_flash_ex.c
     ${HAL_DIR}/Src/stm32f1xx_hal_pwr.c
+    ${HAL_DIR}/Src/stm32f1xx_hal_dma.c
+    ${HAL_DIR}/Src/stm32f1xx_hal_uart.c
 )
 target_include_directories(${PROJECT_NAME} PRIVATE Core/Inc Drivers/LCD ${HAL_DIR}/Inc ${HAL_DIR}/Inc/Legacy Drivers/CMSIS/Include Drivers/CMSIS/Device/ST/STM32F1xx/Include)
 target_compile_definitions(${PROJECT_NAME} PRIVATE USE_HAL_DRIVER ${STM32_DEVICE_DEFINE})

@@ -1,6 +1,7 @@
 ﻿#include "main.h"
 #include "lcd.h"
 #include "dht11.h"
+#include "usart.h"
 
 static void SystemClock_Config(void);
 
@@ -11,11 +12,8 @@ int main(void)
     HAL_Init();
     SystemClock_Config();
 
-    lcd_init();
-    DHT11_Init();
-    lcd_show_string(10, 5, 216, 24, 24, "RCT6 STARTED", YELLOW);
-    lcd_printf(10, 60, "TEMP:");
-    lcd_printf(10, 80, "HUM:");
+    MX_USART2_UART_Init();
+    BLE_UART_StartReceive();
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
 
@@ -40,26 +38,7 @@ int main(void)
             led_last = now;
         }
 
-        now = HAL_GetTick();
-        uint32_t dht11_elapsed = now - dht11_last;
-        if (dht11_elapsed >= 2000)
-        {
-
-            DHT11_Data sample = {0};
-            DHT11_Status status = DHT11_Read(&sample);
-            if (status == DHT11_OK)
-            {
-                lcd_printf(10, 60, "TEMP: %2d", sample.temperature_c);
-                lcd_printf(10, 80, "HUM: %2d%%", sample.humidity_rh);
-                lcd_printf(10, 100, "");
-            }
-            else
-            {
-                lcd_printf_err(10, 100, "DHT11 error, %d", (uint8_t)status);
-            }
-
-            dht11_last = now;
-        }
+        BLE_UART_Poll();
     }
 }
 
